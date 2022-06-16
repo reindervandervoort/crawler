@@ -1,0 +1,5 @@
+{
+    "exec": "ts-node src/crawl.ts",
+    "watch": ["src"],
+    "ext": "ts"
+  }
