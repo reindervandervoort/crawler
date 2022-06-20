@@ -1,4 +1,3 @@
-import { URL } from "url"
 import IDownloadQueueItem from "./download-queue-item.interface";
 
 export default interface IParseQueueItem extends IDownloadQueueItem {

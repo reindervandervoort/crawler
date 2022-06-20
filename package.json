@@ -11,6 +11,7 @@
     "queue-fifo": "^0.2.6"
   },
   "devDependencies": {
+    "@types/cheerio": "^0.22.31",
     "@types/command-line-args": "^5.2.0",
     "@types/command-line-usage": "^5.0.2",
     "@types/node": "^18.0.0",
@@ -35,10 +36,10 @@
     "typescript": "~4.7.2"
   },
   "scripts": {
-    "debug": "ts-node src/crawl.ts -u https://www.apple.com -f reimagined",
+    "debug": "ts-node src/crawl.ts -u https://www.apple.com -f watch -d 2",
     "debug:help": "ts-node src/crawl.ts -h",
     "build": "rimraf ./dist && tsc",
-    "start": "node --experimental-json-modules ./dist/src/crawl.js"
+    "start": "node --experimental-json-modules ./dist/crawl.js"
   },
   "repository": {
     "type": "git",

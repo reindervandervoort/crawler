@@ -1,5 +1,5 @@
-import Queue from "queue-fifo";
-import IQueueItem from "./models/download-queue-item.interface";
+import DownloadService from "./services/download.service";
+import ParseService from "./services/parse.service";
 import CommandLineDoc from "./utils/comman-line-doc";
 
 const cld = new CommandLineDoc();
@@ -10,8 +10,13 @@ if (input.help){
 } else if (!input.find || !input.url) {
   throw new Error("find and url fields are required");
 } else {
-  const crawlQueue = new Queue<IQueueItem>();
-  while (!crawlQueue.isEmpty()) {
-    crawlQueue.dequeue();
-  }
+  const parseService = new ParseService(input);
+  const downloadService = new DownloadService(input);
+  parseService.downloadService = downloadService;
+  downloadService.parseService = parseService;
+
+  Promise.all([
+    parseService.start(),
+    downloadService.start()
+  ]);
 }
